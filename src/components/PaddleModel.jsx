@@ -5,7 +5,7 @@ import * as THREE from 'three'
 
 export default function PaddleModel({ meshSettings, onLoaded, onMeshesDiscovered }) {
   const group = useRef()
-  const { scene } = useGLTF('/paddleModel/paddle.glb')
+  const { scene } = useGLTF('/paddleModel/paddle-compressed.glb')
   const { camera } = useThree()
   const [clonedScene, setClonedScene] = useState(null)
 
@@ -37,29 +37,29 @@ export default function PaddleModel({ meshSettings, onLoaded, onMeshesDiscovered
 
     // Clone the scene to avoid modifying the cached original
     const cloned = scene.clone(true)
-    
+
     // Discover all mesh names in the scene
     const discoveredMeshes = []
-    
+
     // Clone materials for each mesh so they can be modified independently
     cloned.traverse((child) => {
       if (child.isMesh) {
         child.material = child.material.clone()
         child.castShadow = true
         child.receiveShadow = true
-        
+
         // Collect mesh names for control panel
         if (child.name) {
           discoveredMeshes.push(child.name)
         }
       }
     })
-    
+
     // Report discovered meshes to parent component
     if (onMeshesDiscovered && discoveredMeshes.length > 0) {
       onMeshesDiscovered(discoveredMeshes)
     }
-    
+
     setClonedScene(cloned)
   }, [scene, onMeshesDiscovered])
 
@@ -81,7 +81,7 @@ export default function PaddleModel({ meshSettings, onLoaded, onMeshesDiscovered
         if (settings.color) {
           child.material.color.set(settings.color)
         }
-        
+
         // Apply material properties
         if (settings.metalness !== undefined) {
           child.material.metalness = settings.metalness
@@ -101,7 +101,7 @@ export default function PaddleModel({ meshSettings, onLoaded, onMeshesDiscovered
         // console.log('aaaaaa Net001_1', child.material)
 
       }
- 
+
 
       // Apply turf textures only to the turf mesh
       if (meshName && meshName.toLowerCase().includes('turf') && turfTextures) {
@@ -133,5 +133,5 @@ export default function PaddleModel({ meshSettings, onLoaded, onMeshesDiscovered
 }
 
 // Preload the model
-useGLTF.preload('/paddleModel/paddle.glb')
+useGLTF.preload('/paddleModel/paddle-compressed.glb')
 

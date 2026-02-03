@@ -3,7 +3,7 @@ import { useGLTF } from '@react-three/drei'
 import * as THREE from 'three'
 
 export default function TurfLines({ visible = true, color = '#ffffff' }) {
-  const { scene } = useGLTF('/paddleModel/paddle.glb')
+  const { scene } = useGLTF('/paddleModel/paddle-compressed.glb')
   const [turfDimensions, setTurfDimensions] = useState(null)
   const groupRef = useRef()
 
@@ -41,7 +41,7 @@ export default function TurfLines({ visible = true, color = '#ffffff' }) {
 
   const { width, length, centerX, centerY, centerZ } = turfDimensions
   const lineWidth = 0.05 // Width of the lines (5cm standard for paddle courts)
-  const lineHeight = 0.013 // Height to sit slightly above turf (prevents z-fighting)
+  const lineHeight = 0.016 // Height to sit slightly above turf (prevents z-fighting)
 
   return (
     <group ref={groupRef}>
@@ -51,13 +51,13 @@ export default function TurfLines({ visible = true, color = '#ffffff' }) {
         <meshStandardMaterial color={color} />
       </mesh> */}
 
-      <mesh position={[centerX-7, centerY + lineHeight, centerZ]} castShadow receiveShadow>
-        <boxGeometry args={[lineWidth, lineHeight, length-2]} />
+      <mesh position={[centerX - 7, centerY + lineHeight, centerZ]} castShadow receiveShadow>
+        <boxGeometry args={[lineWidth, lineHeight, length - 2]} />
         <meshStandardMaterial color={color} />
       </mesh>
 
-      <mesh position={[centerX+7, centerY + lineHeight, centerZ]} castShadow receiveShadow>
-        <boxGeometry args={[lineWidth, lineHeight, length-2]} />
+      <mesh position={[centerX + 7, centerY + lineHeight, centerZ]} castShadow receiveShadow>
+        <boxGeometry args={[lineWidth, lineHeight, length - 2]} />
         <meshStandardMaterial color={color} />
       </mesh>
 
@@ -68,7 +68,7 @@ export default function TurfLines({ visible = true, color = '#ffffff' }) {
       </mesh> */}
 
       {/* Service line 2 (middle service line) */}
-      <mesh position={[centerX, centerY + lineHeight, centerZ+0.023]} castShadow receiveShadow>
+      <mesh position={[centerX, centerY + lineHeight, centerZ + 0.023]} castShadow receiveShadow>
         <boxGeometry args={[width - 7, lineHeight, lineWidth]} />
         <meshStandardMaterial color={color} />
       </mesh>
