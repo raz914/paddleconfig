@@ -164,15 +164,15 @@ function QuoteModal({ isOpen, onClose, configuration }) {
                             <div className="grid grid-cols-2 gap-4 text-sm">
                                 <div>
                                     <span className="text-gray-600">View Type:</span>
-                                    <span className="ml-2 font-medium text-gray-900 capitalize">{configuration.viewType}</span>
+                                    <span className="ml-2 font-medium text-gray-900 capitalize">{configuration.viewType === 'default' ? 'Classic' : configuration.viewType}</span>
                                 </div>
                                 <div>
-                                    <span className="text-gray-600">Track Color:</span>
+                                    <span className="text-gray-600">Track Colour:</span>
                                     <span className="ml-2 font-medium text-gray-900 capitalize">{configuration.trackColor}</span>
                                 </div>
                                 <div>
-                                    <span className="text-gray-600">Turf Color:</span>
-                                    <span className="ml-2 font-medium text-gray-900 capitalize">{configuration.turfColor}</span>
+                                    <span className="text-gray-600">Turf Colour:</span>
+                                    <span className="ml-2 font-medium text-gray-900 capitalize">{configuration.turfColor === 'default' ? 'Classic' : configuration.turfColor}</span>
                                 </div>
                                 <div>
                                     <span className="text-gray-600">Glass Tint:</span>
